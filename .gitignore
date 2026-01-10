@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+task/BangTin/thunho.md
+task/BangTin/UI.md
+task/Notes/image-1.png
+task/Notes/image-2.png
+task/Notes/image.png
+task/Notes/task1.md
+task/setting/init.md
+plans/google-sheets-integration-plan.md
+n8n-workflows/goals-crud-workflow.json
+n8n-workflows/habits-crud-workflow.json
+n8n-workflows/journal-crud-workflow.json
+n8n-workflows/milestones-crud-workflow.json
+n8n-workflows/README.md
+*.md
