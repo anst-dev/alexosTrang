@@ -104,6 +104,7 @@ interface AppContextType {
   // Utility actions
   refreshData: () => Promise<void>;
   migrateToCloud: () => Promise<boolean>;
+  resetAllData: () => void;
   
   // Export/Import actions
   exportDataToJSON: () => void;
@@ -126,43 +127,9 @@ const STORAGE_KEY = 'ALEX_OS_DATA_V4'; // Bump version for new structure
 // ============================================
 // Default Data
 // ============================================
-const DEFAULT_GOALS: Goal[] = [
-  { 
-    id: '1', 
-    title: 'Lập trình Full Stack', 
-    category: 'Sự nghiệp', 
-    progress: 65, 
-    deadline: '2025-11-15', 
-    colorClass: 'bg-neo-black', 
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop&q=60',
-    milestones: [
-      { id: 'm1', title: 'Học React cơ bản', completed: true },
-      { id: 'm2', title: 'Xây dựng API với Node.js', completed: true },
-      { id: 'm3', title: 'Deploy dự án lên cloud', completed: false, dueDate: '2025-11-10' },
-    ],
-    createdAt: Date.now() - 30 * 24 * 60 * 60 * 1000,
-  },
-  { 
-    id: '2', 
-    title: 'Chạy Marathon', 
-    category: 'Sức khỏe', 
-    progress: 20, 
-    deadline: '2025-12-31', 
-    colorClass: 'bg-neo-blue', 
-    image: 'https://images.unsplash.com/photo-1552674605-46f5ad656600?w=800&auto=format&fit=crop&q=60',
-    milestones: [
-      { id: 'm1', title: 'Chạy được 5km', completed: true },
-      { id: 'm2', title: 'Chạy được 10km', completed: false, dueDate: '2025-12-20' },
-      { id: 'm3', title: 'Chạy được 21km', completed: false, dueDate: '2025-12-28' },
-    ],
-    createdAt: Date.now() - 15 * 24 * 60 * 60 * 1000,
-  },
-];
+const DEFAULT_GOALS: Goal[] = [];
 
-const DEFAULT_HABITS: Habit[] = [
-  { id: '1', name: 'Uống nước (2L)', streak: 5, completedToday: false, lastCompletedDate: null, category: 'Sức khỏe', linkedGoalId: '2' },
-  { id: '2', name: 'Đọc sách 30p', streak: 12, completedToday: false, lastCompletedDate: null, category: 'Học tập' },
-];
+const DEFAULT_HABITS: Habit[] = [];
 
 // ============================================
 // Helper: Load from localStorage with fallback
@@ -704,6 +671,19 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     }
   }, [goals, habits, journalEntries]);
 
+  const resetAllData = useCallback(() => {
+    // Xóa tất cả dữ liệu từ localStorage
+    localStorage.removeItem(STORAGE_KEY + '_GOALS');
+    localStorage.removeItem(STORAGE_KEY + '_HABITS');
+    localStorage.removeItem(STORAGE_KEY + '_JOURNAL');
+    localStorage.removeItem('bovanav2_focus_tasks');
+    
+    // Reset state về mảng rỗng
+    setGoals([]);
+    setHabits([]);
+    setJournalEntries([]);
+  }, []);
+
   // ============================================
   // EXPORT/IMPORT ACTIONS
   // ============================================
@@ -784,7 +764,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       addMilestone, updateMilestone, deleteMilestone, toggleMilestone,
       addHabit, updateHabit, toggleHabit, deleteHabit,
       addJournalEntry, updateJournalEntry, deleteJournalEntry,
-      refreshData, migrateToCloud,
+      refreshData, migrateToCloud, resetAllData,
       exportDataToJSON, exportGoalsCSV, exportHabitsCSV, exportJournalCSV,
       exportMilestonesCSV, exportAllCSV,
       importDataFromJSON, importGoalsCSV, importHabitsCSV, importJournalCSV,

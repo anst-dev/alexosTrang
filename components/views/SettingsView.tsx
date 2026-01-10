@@ -26,7 +26,8 @@ export const SettingsView: React.FC = () => {
   const {
     goals, habits, journalEntries,
     importDataFromJSON, importGoalsCSV, importHabitsCSV, importJournalCSV,
-    exportDataToJSON, exportGoalsCSV, exportHabitsCSV, exportJournalCSV, exportMilestonesCSV
+    exportDataToJSON, exportGoalsCSV, exportHabitsCSV, exportJournalCSV, exportMilestonesCSV,
+    resetAllData
   } = useApp();
   const { showToast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -384,6 +385,38 @@ export const SettingsView: React.FC = () => {
             <div>Focus Tasks</div>
           </div>
         </div>
+      </BrutalCard>
+
+      {/* Reset Data */}
+      <BrutalCard
+        title={
+          <span className="flex items-center gap-2">
+            <Icon name="delete" size={20} />
+            Xóa dữ liệu
+          </span>
+        }
+        collapsible
+        defaultCollapsed
+      >
+        <p className="font-mono text-sm text-gray-600 mb-4">
+          Xóa tất cả dữ liệu đã lưu trong localStorage. Hành động này không thể hoàn tác!
+        </p>
+        <button
+          onClick={() => {
+            if (window.confirm('Bạn có chắc chắn muốn xóa tất cả dữ liệu? Hành động này không thể hoàn tác!')) {
+              resetAllData();
+              showToast('Đã xóa tất cả dữ liệu!', 'success');
+              setFocusTasksCount(0);
+            }
+          }}
+          className="w-full p-4 border-4 border-neo-black bg-neo-red text-white hover:bg-red-700 transition-colors shadow-hard hover:shadow-none hover:translate-x-1 hover:translate-y-1 flex items-center gap-3"
+        >
+          <Icon name="delete_forever" size={24} />
+          <div className="text-left">
+            <div className="font-bold uppercase">Xóa tất cả dữ liệu</div>
+            <div className="text-sm font-mono text-white/90">Goals, Habits, Journal, Focus Tasks</div>
+          </div>
+        </button>
       </BrutalCard>
     </div>
   );

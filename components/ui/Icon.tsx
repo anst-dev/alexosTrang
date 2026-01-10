@@ -15,6 +15,7 @@ const iconMap: Record<string, keyof typeof LucideIcons> = {
   'edit': 'Pencil',
   'edit_note': 'FileEdit',
   'delete': 'Trash2',
+  'delete_forever': 'Trash2',
   'check': 'Check',
   'check_circle': 'CheckCircle',
   'send': 'Send',
@@ -27,6 +28,15 @@ const iconMap: Record<string, keyof typeof LucideIcons> = {
   'minus': 'Minus',
   'chevron_down': 'ChevronDown',
   'chevron_up': 'ChevronUp',
+  
+  // File & Data
+  'file_download': 'Download',
+  'file_upload': 'Upload',
+  'settings': 'Settings',
+  'download': 'Download',
+  'upload': 'Upload',
+  'analytics': 'BarChart3',
+  'task_alt': 'CheckCircle2',
   
   // Objects
   'favorite': 'Heart',
