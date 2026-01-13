@@ -7,7 +7,8 @@ import { Goal, GOAL_CATEGORIES, GoalCategory, formatDeadlineDisplay, getDaysLeft
 import { Icon } from '../ui/Icon';
 
 // Webhook URL cho ghi chú nhanh - ENABLED
-const QUICK_NOTE_WEBHOOK_URL = 'https://unsupercilious-leonarda-unreaving.ngrok-free.dev/webhook/logTimeTrang';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+const QUICK_NOTE_WEBHOOK_URL = `${BASE_URL}/webhook/logTimeTrang`;
 
 export const GoalsView: React.FC = () => {
   const {

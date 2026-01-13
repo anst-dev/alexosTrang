@@ -3,8 +3,9 @@ import { Icon } from '../ui/Icon';
 import { useToast } from '../../context/ToastContext';
 
 // Webhook URL cho ghi chú nhanh
-const QUICK_NOTE_WEBHOOK_URL = 'https://unsupercilious-leonarda-unreaving.ngrok-free.dev/webhook/logTimeTrang';
-const ENABLE_QUICK_NOTE_API = true;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+const QUICK_NOTE_WEBHOOK_URL = `${BASE_URL}/webhook/logTimeTrang`;
+const ENABLE_QUICK_NOTE_API = import.meta.env.VITE_ENABLE_QUICK_NOTE_API === 'true';
 
 // Các options cho phân loại và chi tiết
 const PHAN_LOAI_OPTIONS = ['Kinh doanh', 'Cá nhân','Tiếng trung'] as const;

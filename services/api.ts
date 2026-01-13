@@ -10,10 +10,10 @@ import { Habit, JournalEntry, Goal, Milestone } from '../types';
 // ============================================
 // CONFIGURATION
 // ============================================
-const API_BASE_URL = import.meta.env.VITE_N8N_BASE_URL || 'http://localhost:5678';
+const API_BASE_URL = import.meta.env.VITE_BASE_URL;
 // Mặc định sử dụng localStorage, không gọi n8n API
 // DISABLED: Chỉ sử dụng 2 API cho quick note và log history
-const USE_LOCAL_STORAGE = true; // Force local storage for goals, habits, journal, milestones
+const USE_LOCAL_STORAGE = import.meta.env.VITE_USE_LOCAL_STORAGE === 'true'; // Force local storage for goals, habits, journal, milestones
 
 // n8n Webhook Endpoints - DISABLED (chỉ dùng quick note APIs)
 // Các endpoint này đã bị vô hiệu hóa, chỉ sử dụng localStorage

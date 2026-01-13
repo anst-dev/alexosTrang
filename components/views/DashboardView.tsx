@@ -8,9 +8,10 @@ import { formatDeadlineDisplay, getDaysLeft } from '../../types';
 import { QuickNoteSection } from './QuickNoteSection';
 
 // API URL để lấy danh sách log
-const GET_ALL_LOGS_URL = 'https://unsupercilious-leonarda-unreaving.ngrok-free.dev/webhook/GetAllLogTrang';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+const GET_ALL_LOGS_URL = `${BASE_URL}/webhook/GetAllLogTrang`;
 // Flag để enable/disable API calls
-const ENABLE_QUICK_NOTE_API = true;
+const ENABLE_QUICK_NOTE_API = import.meta.env.VITE_ENABLE_DASHBOARD_LOGS_API === 'true';
 
 // Interface cho log entry từ API
 interface LogEntry {
